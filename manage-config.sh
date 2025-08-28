@@ -61,12 +61,6 @@ backup_current_config() {
 apply_dotfiles() {
     log_info "Applying dotfiles from $DOTFILES_DIR"
     
-    # Check if .config exists in dotfiles repo
-    if [[ ! -d "$DOTFILES_DIR/.config" ]]; then
-        log_error "No .config directory found in $DOTFILES_DIR"
-        exit 1
-    fi
-    
     # Create backup first
     backup_current_config
     
@@ -76,13 +70,26 @@ apply_dotfiles() {
         rm -rf "$CONFIG_DIR"
     fi
     
-    # Use stow to symlink the dotfiles
+    # Use stow to symlink all packages
     cd "$DOTFILES_DIR"
-    if stow . -t "$HOME" 2>/dev/null; then
-        log_success "Dotfiles applied successfully using stow"
+    local failed_packages=()
+    for package in */; do
+        package=${package%/}
+        if [[ -d "$package/.config" ]]; then
+            if stow "$package" -t "$HOME" 2>/dev/null; then
+                log_success "Package '$package' applied successfully"
+            else
+                log_error "Failed to apply package '$package'"
+                failed_packages+=("$package")
+            fi
+        fi
+    done
+    
+    if [[ ${#failed_packages[@]} -eq 0 ]]; then
+        log_success "All dotfiles applied successfully using stow"
         log_info "Your dotfiles are now active and will stay in sync with the repository"
     else
-        log_error "Failed to apply dotfiles with stow"
+        log_error "Some packages failed to apply: ${failed_packages[*]}"
         log_info "Attempting to restore backup..."
         restore_backup
         exit 1
@@ -96,7 +103,12 @@ restore_backup() {
         
         # Remove stowed dotfiles
         cd "$DOTFILES_DIR"
-        stow -D . -t "$HOME" 2>/dev/null || true
+        for package in */; do
+            package=${package%/}
+            if [[ -d "$package/.config" ]]; then
+                stow -D "$package" -t "$HOME" 2>/dev/null || true
+            fi
+        done
         
         # Remove current .config and restore backup
         if [[ -d "$CONFIG_DIR" ]] || [[ -L "$CONFIG_DIR" ]]; then
@@ -158,6 +170,10 @@ show_help() {
     echo "  $0 apply      # Apply dotfiles (with backup)"
     echo "  $0 restore    # Restore backup"
     echo "  $0 status     # Check current status"
+    echo ""
+    echo "Note: To use individual packages, use stow directly:"
+    echo "  stow polybar  # Stow only the polybar package"
+    echo "  stow -D nvim  # Unstow the nvim package"
 }
 
 main() {
