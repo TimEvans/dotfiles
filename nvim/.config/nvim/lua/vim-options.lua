@@ -26,6 +26,7 @@ vim.opt.foldlevel = 99      -- High level means most folds will be open
 
 -- close buffers
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<leader>q',':q<CR>', { desc = 'Close' })
 
 -- temporarily increase this time while I'm learning
 vim.opt.timeoutlen = 2000
