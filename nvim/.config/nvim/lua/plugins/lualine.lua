@@ -17,7 +17,7 @@ return {
         lualine_a = { 
           {'buffers',  -- Notice the extra {} wrapping the component and options
             buffers_color = {
-              active = { bg = '#E69875', fg = '#2d353b' },   -- purple background
+              active = { bg = '#E69876', fg = '#2d353b' },   -- purple background
               inactive = { bg = '#4a5560', fg = '#859289' },
             }
           }

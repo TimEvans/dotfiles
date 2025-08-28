@@ -34,17 +34,24 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        -- Enable ghost text
+        experimental = {
+          ghost_text = {
+            hl_group = "CmpGhostText",
+          },
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<M-Tab>"] = cmp.mapping.confirm({ select = true }),   -- Alt+Tab always confirms
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),     -- Enter only if manually selected
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "codeium" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
         }, {
           { name = "buffer" },
         }),
@@ -52,3 +59,4 @@ return {
     end,
   },
 }
+

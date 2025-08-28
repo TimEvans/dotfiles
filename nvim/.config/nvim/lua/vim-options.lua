@@ -24,6 +24,9 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false  -- Don't fold by default when opening files
 vim.opt.foldlevel = 99      -- High level means most folds will be open
 
+-- close buffers
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete buffer' })
+
 -- temporarily increase this time while I'm learning
 vim.opt.timeoutlen = 2000
  
