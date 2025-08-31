@@ -3,10 +3,10 @@
 
   // Position TOP
   "layer": "top",
-  "height": 39,
-  "margin-bottom": 0,
-  "margin-left": 0,
-  "margin-right": 0,    
+  "height": 42,
+  "margin-top": 2,
+  "margin-left": 2,
+  "margin-right": 2,    
   "spacing": 0,
 
   // Modules Left
@@ -24,6 +24,7 @@
     "bluetooth",
     "network",
     "battery",
+    "custom/notification",
     "custom/exit",
     "clock"
   ],
