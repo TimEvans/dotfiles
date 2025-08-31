@@ -12,7 +12,7 @@ button {
     color: #d3c6aa; /* fg */
     background-color: #374145; /* surface0 equivalent */
     border-style: solid;
-    border-width: 2px;
+    border-width: 3px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 25%;
@@ -30,7 +30,7 @@ button:focus, button:active, button:hover {
 
 /* Lock */
 #lock {
-    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    background-image: url("icons/lock_green.png");
     border-color: #a7c080; /* yellow */
 }
 
@@ -41,7 +41,7 @@ button:focus, button:active, button:hover {
 
 /* Logout */
 #logout {
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    background-image: url("icons/logout_green.png");
     border-color: #a7c080; /* blue */
 }
 
@@ -52,7 +52,7 @@ button:focus, button:active, button:hover {
 
 /* Suspend */
 #suspend {
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+    background-image: url("icons/suspend_green.png");
     border-color: #a7c080; /* aqua */
 }
 
@@ -63,7 +63,7 @@ button:focus, button:active, button:hover {
 
 /* Hibernate */
 #hibernate {
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+    background-image: url("icons/hibernate_green.png");
     border-color: #a7c080; /* purple */
 }
 
@@ -74,7 +74,7 @@ button:focus, button:active, button:hover {
 
 /* Shutdown */
 #shutdown {
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    background-image: url("icons/shutdown_green.png");
     border-color: #a7c080; /* red */
 }
 
@@ -85,7 +85,7 @@ button:focus, button:active, button:hover {
 
 /* Reboot */
 #reboot {
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    background-image: url("icons/reboot_green.png");
     border-color: #a7c080; /* orange */
 }
 
