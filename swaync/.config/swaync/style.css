@@ -6,6 +6,7 @@
 @define-color buttoncolor @secondary;
 @define-color bordercolor @primary;
 @define-color fontcolor @on_surface;
+@define-color slidercolor @secondary;
 
 * {
     font-family: "Fira Sans Semibold";
@@ -45,4 +46,33 @@ button {
 .notification-action:hover {
     color: #ffffff;
     background: transparent;
+}
+
+/* Slider Styling (Volume, Backlight, etc.) - Everforest Aqua */
+
+scale trough {
+    min-height: 3px;
+    border-radius: 2px;
+    background: @surface_variant;
+}
+
+scale highlight {
+    background: @slidercolor;
+    border-radius: 2px;
+}
+
+scale slider {
+    min-height: 7px;
+    min-width: 7px;
+    border-radius: 5px;
+    background: @slidercolor;
+    margin: 1px;
+}
+
+scale slider:hover {
+    background: @secondary_container;
+}
+
+scale slider:active {
+    background: @secondary_container;
 }
