@@ -30,4 +30,3 @@ vim.keymap.set('n', '<leader>q',':q<CR>', { desc = 'Close' })
 
 -- temporarily increase this time while I'm learning
 vim.opt.timeoutlen = 2000
- 
