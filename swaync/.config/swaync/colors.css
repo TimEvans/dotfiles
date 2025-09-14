@@ -1,0 +1,57 @@
+/*
+* Everforest Color Palette for SwayNC
+*/
+
+/* Everforest Dark Hard */
+@define-color background #2d353b;
+@define-color surface #343f44;
+@define-color surface_container #3d484d;
+@define-color surface_variant #475258;
+
+/* Text colors */
+@define-color on_background #d3c6aa;
+@define-color on_surface #d3c6aa;
+@define-color on_surface_variant #9da9a0;
+
+/* Everforest Green (for accents/borders) */
+@define-color primary #a7c080;
+@define-color on_primary #2d353b;
+@define-color primary_container #859079;
+@define-color on_primary_container #d3c6aa;
+
+/* Everforest Aqua (for sliders) */
+@define-color secondary #83c092;
+@define-color on_secondary #2d353b;
+@define-color secondary_container #7fb069;
+@define-color on_secondary_container #d3c6aa;
+
+/* Tertiary colors (Everforest Purple) */
+@define-color tertiary #d699b6;
+@define-color on_tertiary #2d353b;
+@define-color tertiary_container #c593b3;
+@define-color on_tertiary_container #d3c6aa;
+
+/* Error colors (Everforest Red) */
+@define-color error #e67e80;
+@define-color on_error #2d353b;
+@define-color error_container #db4b4c;
+@define-color on_error_container #d3c6aa;
+
+/* Warning colors (Everforest Orange) */
+@define-color warning #e69875;
+@define-color on_warning #2d353b;
+
+/* Outline colors */
+@define-color outline #859289;
+@define-color outline_variant #5a6569;
+
+/* Other utility colors */
+@define-color scrim #232a2e;
+@define-color shadow #1e2326;
+@define-color inverse_surface #d3c6aa;
+@define-color inverse_on_surface #2d353b;
+@define-color inverse_primary #859079;
+
+/* Blur backgrounds */
+@define-color blur_background rgba(45, 53, 59, 0.3);
+@define-color blur_background8 rgba(45, 53, 59, 0.8);

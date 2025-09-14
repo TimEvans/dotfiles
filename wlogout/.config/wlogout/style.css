@@ -1,0 +1,95 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+
+window {
+    background-color: rgba(45, 53, 59, 0.9); /* bg0 with transparency */
+}
+
+button {
+    color: #d3c6aa; /* fg */
+    background-color: #374145; /* surface0 equivalent */
+    border-style: solid;
+    border-width: 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-radius: 10px;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:focus, button:active, button:hover {
+    background-color: #3d484d; /* bg2 */
+    border-color: #a7c080; /* green */
+    color: #a7c080; /* green */
+    outline-style: none;
+}
+
+/* Lock */
+#lock {
+    background-image: url("icons/lock_green.png");
+    border-color: #a7c080; /* yellow */
+}
+
+#lock:focus, #lock:active, #lock:hover {
+    border-color: #a7c080; /* yellow */
+    color: #a7c080; /* yellow */
+}
+
+/* Logout */
+#logout {
+    background-image: url("icons/logout_green.png");
+    border-color: #a7c080; /* blue */
+}
+
+#logout:focus, #logout:active, #logout:hover {
+    border-color: #a7c080; /* blue */
+    color: #a7c080; /* blue */
+}
+
+/* Suspend */
+#suspend {
+    background-image: url("icons/suspend_green.png");
+    border-color: #a7c080; /* aqua */
+}
+
+#suspend:focus, #suspend:active, #suspend:hover {
+    border-color: #a7c080; /* aqua */
+    color: #a7c080; /* aqua */
+}
+
+/* Hibernate */
+#hibernate {
+    background-image: url("icons/hibernate_green.png");
+    border-color: #a7c080; /* purple */
+}
+
+#hibernate:focus, #hibernate:active, #hibernate:hover {
+    border-color: #a7c080; /* purple */
+    color: #a7c080; /* purple */
+}
+
+/* Shutdown */
+#shutdown {
+    background-image: url("icons/shutdown_green.png");
+    border-color: #a7c080; /* red */
+}
+
+#shutdown:focus, #shutdown:active, #shutdown:hover {
+    border-color: #a7c080; /* red */
+    color: #a7c080; /* red */
+}
+
+/* Reboot */
+#reboot {
+    background-image: url("icons/reboot_green.png");
+    border-color: #a7c080; /* orange */
+}
+
+#reboot:focus, #reboot:active, #reboot:hover {
+    border-color: #a7c080; /* orange */
+    color: #a7c080; /* orange */
+}
