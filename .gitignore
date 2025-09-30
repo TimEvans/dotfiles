@@ -1,3 +1,11 @@
 default-layout.kdl
 gtk/.config/gtk-3.0/bookmarks
 misc/.config/dconf
+claude/.claude/.credentials.json
+claude/.claude/downloads/
+claude/.claude/file-history/
+claude/.claude/shell-snapshots/
+claude/.claude/statsig/
+claude/.claude/projects/-home-tim-dotfiles
+claude/.claude/todos
+claude/.claude/history.jsonl
