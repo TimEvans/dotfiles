@@ -118,5 +118,4 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
 export PATH=$PATH:/usr/local/go/bin
-export
-  PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
