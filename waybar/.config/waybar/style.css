@@ -48,16 +48,14 @@ window#waybar {
 #custom-notification,
 #custom-exit {
   margin: 4px 6px;
-  padding: 2px;
-  padding: 0 12px;
-  background: #FFFBEF;
+  padding: 0 3px;
+  background: transparent;
   border-radius: 8px;
-  color: #0a4021;
-  border: 3px solid #D3C6AA;
+  color: #FFFBEF;
 }
 
 #window {
-  color: #272E33;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -76,6 +74,12 @@ window#waybar {
   border-radius: 8px;
   margin: 4px 6px;
   padding: 0 8px;
+}
+
+tooltip {
+  background: #D3C6AA;
+  border-radius: 8px;
+  color: #FFFBEF;
 }
 
 

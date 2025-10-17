@@ -123,7 +123,7 @@
     "format": "{:%H:%M %a}",
     "on-click": "gnome-calendar",
     "timezone": "",
-    "tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<tt><big>{calendar}</big></tt>"
   },
 
   // System
