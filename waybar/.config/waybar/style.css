@@ -16,7 +16,7 @@ window#waybar {
 }*/
 
 #workspaces {
-  background: #D3C6AA;
+  background: #0a4021;
   border-radius: 8px;
   margin: 4px 6px;
   padding: 2px;
@@ -25,7 +25,7 @@ window#waybar {
 #workspaces button {
   padding: 0 8px;
   background: #FFFBEF;
-  color: #000000;
+  color: #0a4021;
   border-radius: 4px;
   margin: 2px;
 }
