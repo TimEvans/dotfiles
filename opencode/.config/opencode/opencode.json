@@ -1,0 +1,15 @@
+{
+  "model": "anthropic/claude-sonnet-4-20241029",
+  "mcp": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"]
+    }
+  },
+  "agents": {
+    "research": {
+      "description": "Deep web research with browser automation",
+      "temperature": 0.7
+    }
+  }
+}
