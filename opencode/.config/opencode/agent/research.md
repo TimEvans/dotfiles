@@ -2,7 +2,6 @@
 description: Research agent
 mode: primary
 temperature: 0.7
-model: anthropic/claude-sonnet-4-20250514
 tools:
   write: true
   edit: true
