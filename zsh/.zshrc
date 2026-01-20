@@ -99,6 +99,14 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 
+# Load private environment variables (API keys, etc)
+if [ -f "${HOME}/.env_private" ]; then
+  # shellcheck disable=SC1090
+  source "${HOME}/.env_private"
+fi
+
+# Optionally: unset the variable after usage? Or just keep them
+# export other env vars…
 eval "$(starship init zsh)"
 export EDITOR="nvim"
 export SUDO_EDITOR="$EDITOR"
@@ -119,3 +127,37 @@ eval "$(zoxide init zsh)"
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin:$PATH"
+# opencode
+export PATH=/home/tim/.opencode/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
+
+# Magnetic Rose Vault - Quick Note Capture
+export VAULT_PATH="/home/tim/Github/magnetic_rose"
+
+# Magnetic Rose Vault - Quick Note Capture
+export MET_VAULT_PATH="/home/tim/Github/met-docs"
+
+# Overloaded note command with Default Note template
+mrnote() {
+    if [ -z "$1" ]; then
+        # No argument: timestamped note
+        local filepath="$VAULT_PATH/Inbox/$(date +%Y%m%d-%H%M%S)-note.md"
+        nvim "$filepath"
+    else
+        # Argument provided: named note
+        local filename=$(echo "$1" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+        nvim "$VAULT_PATH/Inbox/${filename}.md"
+    fi
+}
+
+metnote() {
+    if [ -z "$1" ]; then
+        # No argument: timestamped note
+        local filepath="$MET_VAULT_PATH/Inbox/$(date +%Y%m%d-%H%M%S)-note.md"
+        nvim "$filepath"
+    else
+        # Argument provided: named note
+        local filename=$(echo "$1" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+        nvim "$MET_VAULT_PATH/Inbox/${filename}.md"
+    fi
+}
