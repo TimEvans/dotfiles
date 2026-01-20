@@ -18,7 +18,7 @@ profile docked {
   output "Lenovo Group Limited LEN D27-20B 0x31434635" {
     enable
     mode 1920x1080@74.97Hz
-    position 0,420
+    position 0,86
     scale 1.0
     transform normal
   }
