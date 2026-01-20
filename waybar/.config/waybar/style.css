@@ -44,6 +44,7 @@ window#waybar {
 #battery,
 #network,
 #pulseaudio,
+#backlight,
 #bluetooth,
 #custom-notification,
 #custom-exit {

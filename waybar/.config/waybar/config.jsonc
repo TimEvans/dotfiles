@@ -18,9 +18,10 @@
   "modules-center": [],
 
 
-  // Modules Right    
+  // Modules Right
   "modules-right": [
     "pulseaudio",
+    "backlight",
     "bluetooth",
     "network",
     "battery",
@@ -253,6 +254,14 @@
       "default": ["", "", ""]
     },
     "on-click": "pavucontrol"
+  },
+
+  // Backlight
+  "backlight": {
+    "format": "󰃠  {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip-format": "Brightness: {percent}%"
   },
 
   // Bluetooth
