@@ -46,6 +46,7 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #bluetooth,
+#power-profiles-daemon,
 #custom-notification,
 #custom-exit {
   margin: 4px 6px;

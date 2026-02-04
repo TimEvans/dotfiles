@@ -1,0 +1,13 @@
+[Unit]
+Description=Adjust display refresh rate based on power profile
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/dotfiles/scripts/power-profile-refresh-rate.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

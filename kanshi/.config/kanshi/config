@@ -6,8 +6,16 @@ profile undocked {
     scale 1.5
     transform normal
   }
+}
 
-  exec hyprctl dispatch dpms on eDP-1
+profile undocked-powersave {
+  output eDP-1 {
+    enable
+    mode 2880x1800@60.00Hz
+    position 0,0
+    scale 1.5
+    transform normal
+  }
 }
 
 profile docked {
@@ -30,5 +38,7 @@ profile docked {
     scale 1.0
     transform 270
   }
+
+  exec ~/dotfiles/scripts/update-hyprpaper-monitors.sh && killall hyprpaper; hyprpaper
 }
 
