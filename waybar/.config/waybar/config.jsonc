@@ -24,6 +24,7 @@
     "backlight",
     "bluetooth",
     "network",
+    "custom/vpn",
     "power-profiles-daemon",
     "battery",
     "custom/notification",
@@ -193,8 +194,9 @@
     ]
   },
 
-  // Network
+  // Network (pinned to wifi interface so VPN tunnels don't override display)
   "network": {
+    "interface": "wlp0s20f3",
     "format": "{ifname}",
     "format-wifi": " {essid} ({signalStrength}%)",
     "format-ethernet": "  {ifname}",
@@ -205,6 +207,19 @@
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "on-click": "ghostty -e nmtui"
+  },
+
+  // ProtonVPN toggle
+  "custom/vpn": {
+    "format": "{icon}",
+    "exec": "~/.config/waybar/vpn-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/waybar/vpn-toggle.sh",
+    "format-icons": {
+      "connected": "󰦝",
+      "disconnected": "󰦞"
+    }
   },
 
   // Battery
@@ -268,8 +283,8 @@
   // Bluetooth
   "bluetooth": {
     "format": " {status}",
-    "format-disabled": "",
-    "format-off": "",
+    "format-disabled": " {status}",
+    "format-off": " {status}",
     "interval": 30,
     "on-click": "blueman-manager",
     "format-no-controller": ""

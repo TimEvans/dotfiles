@@ -43,6 +43,7 @@ window#waybar {
 #clock,
 #battery,
 #network,
+#custom-vpn,
 #pulseaudio,
 #backlight,
 #bluetooth,
@@ -54,6 +55,15 @@ window#waybar {
   background: transparent;
   border-radius: 8px;
   color: #FFFBEF;
+}
+
+#custom-vpn.disconnected {
+  color: #859289;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+  color: #859289;
 }
 
 #window {
