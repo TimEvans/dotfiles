@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ccsession": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/home/tim/Github/claude-session-mcp",
+        "ccsession"
+      ],
+      "env": {}
+    }
+  }
+}
