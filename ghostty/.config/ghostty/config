@@ -44,4 +44,5 @@
 
 # Theme
 theme = Everforest Dark - Hard
+bell-features = system,audio,attention,title
 keybind = shift+enter=text:\x1b\r
