@@ -49,7 +49,8 @@ window#waybar {
 #bluetooth,
 #power-profiles-daemon,
 #custom-notification,
-#custom-exit {
+#custom-exit,
+#custom-hyprwhspr {
   margin: 4px 6px;
   padding: 0 3px;
   background: transparent;
@@ -86,6 +87,18 @@ window#waybar {
   border-radius: 8px;
   margin: 4px 6px;
   padding: 0 8px;
+}
+
+#custom-hyprwhspr {
+  color: #859289;
+}
+
+#custom-hyprwhspr.recording {
+  color: #FFFBEF;
+}
+
+#custom-hyprwhspr.error {
+  color: #E69875;
 }
 
 tooltip {

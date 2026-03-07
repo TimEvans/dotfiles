@@ -1,24 +1,14 @@
 {
-  // General Settings
-
-  // Position TOP
   "layer": "top",
   "height": 42,
   "margin-top": 4,
   "margin-left": 4,
-  "margin-right": 4,    
+  "margin-right": 4,
   "spacing": 0,
-
-  // Modules Left
   "modules-left": [
     "hyprland/workspaces"
   ],
-
-// Modules Center
   "modules-center": [],
-
-
-  // Modules Right
   "modules-right": [
     "pulseaudio",
     "backlight",
@@ -29,36 +19,48 @@
     "battery",
     "custom/notification",
     "custom/exit",
-    "clock"
+    "clock",
+    "custom/hyprwhspr"
   ],
-
-  // Workspaces
-"hyprland/workspaces": {
-  "on-scroll-up": "hyprctl dispatch workspace r-1",
-  "on-scroll-down": "hyprctl dispatch workspace r+1",
-  "on-click": "activate",
-  "active-only": false,
-  "all-outputs": false,
-  "format": "{}",
-  "format-icons": {
-    "urgent": "",
-    "active": "",
-    "default": ""
+  "hyprland/workspaces": {
+    "on-scroll-up": "hyprctl dispatch workspace r-1",
+    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": false,
+    "format": "{}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "desc:Lenovo Group Limited LEN D27-20B 0x31434635": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "desc:Lenovo Group Limited LEN D27-20B U733018L": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
   },
-  "persistent-workspaces": {
-    "desc:Lenovo Group Limited LEN D27-20B 0x31434635": [1, 2, 3, 4, 5],
-    "desc:Lenovo Group Limited LEN D27-20B U733018L": [6, 7, 8, 9, 10]
-  }
-},
-
-  // Taskbar
   "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 18,
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["Alacritty", "ghostty"],
+    "ignore-list": [
+      "Alacritty",
+      "ghostty"
+    ],
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition"
     },
@@ -67,8 +69,6 @@
       "Foot Server": "Terminal"
     }
   },
-
-  // Hyprland Window
   "hyprland/window": {
     "max-length": 60,
     "rewrite": {
@@ -80,32 +80,24 @@
     },
     "separate-outputs": true
   },
-
-  // Power Menu
   "custom/exit": {
-    "format": "",
+    "format": "\uf011",
     "on-click": "wlogout",
     "on-click-right": "hyprlock",
     "tooltip-format": "Left: Power menu\nRight: Lock screen"
   },
-
-  // SwayNC
   "custom/notification": {
     "tooltip-format": "Left: Notifications\nRight: Do not disturb",
     "format": "{icon}",
     "format-icons": {
-      "notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "none": "",
-      "dnd-notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "dnd-none": "",
-      "inhibited-notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification":
-        "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "dnd-inhibited-none": ""
+      "notification": "<span rise='8pt'>\uf0a2<span foreground='red'><sup>\uf444</sup></span></span>",
+      "none": "\uf0a2",
+      "dnd-notification": "<span rise='8pt'>\uf0a2<span foreground='red'><sup>\uf444</sup></span></span>",
+      "dnd-none": "\uf1f7",
+      "inhibited-notification": "<span rise='8pt'>\uf0a2<span foreground='red'><sup>\uf444</sup></span></span>",
+      "inhibited-none": "\uf0a2",
+      "dnd-inhibited-notification": "<span rise='8pt'>\uf1f7<span foreground='red'><sup>\uf444</sup></span></span>",
+      "dnd-inhibited-none": "\uf1f7"
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
@@ -114,52 +106,37 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-
-  // System tray
   "tray": {
     "icon-size": 21,
     "spacing": 10
   },
-
-  // Clock
   "clock": {
     "format": "{:%H:%M %a}",
     "on-click": "gnome-calendar",
     "timezone": "",
     "tooltip-format": "<tt><big>{calendar}</big></tt>"
   },
-
-  // System
   "custom/system": {
-    "format": "",
+    "format": "\ue473",
     "tooltip": false
   },
-
-  // CPU
   "cpu": {
     "format": "/ C {usage}% ",
     "on-click": "~/.config/ml4w/settings/system-monitor.sh"
   },
-
-  // Memory
   "memory": {
     "format": "/ M {}% ",
     "on-click": "~/.config/ml4w/settings/system-monitor.sh"
   },
-
-  // Harddisc space used
   "disk": {
     "interval": 30,
     "format": "D {percentage_used}% ",
     "path": "/",
     "on-click": "~/.config/ml4w/settings/system-monitor.sh"
   },
-
   "hyprland/language": {
     "format": "/ K {short}"
   },
-
-  // Group Hardware
   "group/hardware": {
     "orientation": "inherit",
     "drawer": {
@@ -167,10 +144,13 @@
       "children-class": "not-memory",
       "transition-left-to-right": false
     },
-    "modules": ["custom/system", "disk", "cpu", "memory"]
+    "modules": [
+      "custom/system",
+      "disk",
+      "cpu",
+      "memory"
+    ]
   },
-
-  // Group Links
   "group/links": {
     "orientation": "horizontal",
     "modules": [
@@ -178,8 +158,6 @@
       "custom/empty"
     ]
   },
-
-  // Group Settings
   "group/settings": {
     "orientation": "inherit",
     "drawer": {
@@ -193,23 +171,19 @@
       "custom/wallpaper"
     ]
   },
-
-  // Network (pinned to wifi interface so VPN tunnels don't override display)
   "network": {
     "interface": "wlp0s20f3",
     "format": "{ifname}",
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": "  {ifname}",
-    "format-disconnected": "Disconnected ⚠",
-    "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
-    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+    "format-ethernet": "\uf796  {ifname}",
+    "format-disconnected": "Disconnected \u26a0",
+    "tooltip-format": "\uf796 {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "\uf1eb  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": "\uf796 {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "on-click": "ghostty -e nmtui"
   },
-
-  // ProtonVPN toggle
   "custom/vpn": {
     "format": "{icon}",
     "exec": "~/.config/waybar/vpn-status.sh",
@@ -217,76 +191,75 @@
     "interval": 5,
     "on-click": "~/.config/waybar/vpn-toggle.sh",
     "format-icons": {
-      "connected": "󰦝",
-      "disconnected": "󰦞"
+      "connected": "\udb82\udd9d",
+      "disconnected": "\udb82\udd9e"
     }
   },
-
-  // Battery
   "battery": {
     "states": {
-      // "good": 95,
       "warning": 30,
       "critical": 15
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "  {capacity}%",
-    "format-plugged": "  {capacity}%",
+    "format-charging": "\uf5e7  {capacity}%",
+    "format-plugged": "\uf1e6  {capacity}%",
     "format-alt": "{icon}  {time}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "]
+    "format-icons": [
+      "\uf244 ",
+      "\uf243 ",
+      "\uf242 ",
+      "\uf241 ",
+      "\uf240 "
+    ]
   },
-
-  // Power Profiles Daemon
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
+      "default": "\uf185",
+      "performance": "\uf0e7",
+      "balanced": "\uf863",
+      "power-saver": "\uf06c"
     }
   },
-
-  // Pulseaudio
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
     "format": "{icon}  {volume}%",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
+    "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
+    "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
+    "format-muted": "\uf6a9 {format_source}",
+    "format-source": "{volume}% \uf130",
+    "format-source-muted": "\uf131",
     "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
-      "phone": " ",
-      "portable": " ",
-      "car": " ",
-      "default": ["", "", ""]
+      "headphone": "\uf025 ",
+      "hands-free": "\uf590 ",
+      "headset": "\uf590 ",
+      "phone": "\uf095 ",
+      "portable": "\uf095 ",
+      "car": "\uf1b9 ",
+      "default": [
+        "\uf026",
+        "\uf028",
+        "\uf028"
+      ]
     },
     "on-click": "pavucontrol"
   },
-
-  // Backlight
   "backlight": {
-    "format": "󰃠  {percent}%",
+    "format": "\udb80\udce0  {percent}%",
     "on-scroll-up": "brightnessctl set 5%+",
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip-format": "Brightness: {percent}%"
   },
-
-  // Bluetooth
   "bluetooth": {
-    "format": " {status}",
-    "format-disabled": " {status}",
-    "format-off": " {status}",
+    "format": "\uf293 {status}",
+    "format-disabled": "\uf293 {status}",
+    "format-off": "\uf293 {status}",
     "interval": 30,
     "on-click": "blueman-manager",
     "format-no-controller": ""
-  }
+  },
+  "include": [
+    "/home/tim/.config/waybar/hyprwhspr-module.jsonc"
+  ]
 }
