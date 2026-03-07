@@ -132,7 +132,7 @@ format = '[ $user ]($style)'
 ssh_only = true
 style = "bg:bg1 fg:fg"
 format = '[@$hostname $ssh_symbol]($style)'
-ssh_symbol = " "
+ssh_symbol = "󰣀 󰌘"
 
 [directory]
 style = "fg:bg_dim bg:aqua"
