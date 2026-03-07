@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# pshot - Switch active screenshot project
+# Usage: pshot [project]  (direct)
+#        pshot            (interactive gum menu)
+
+set -euo pipefail
+
+GITHUB_DIR="$HOME/Github"
+STATE_FILE="$HOME/.config/screen-project"
+HISTORY_FILE="$HOME/.config/screen-projects"
+
+# Ensure history file exists with defaults
+if [[ ! -f "$HISTORY_FILE" ]]; then
+    mkdir -p "$(dirname "$HISTORY_FILE")"
+    printf '%s\n' notime met dotfiles > "$HISTORY_FILE"
+fi
+
+# Ensure state file exists
+if [[ ! -f "$STATE_FILE" ]]; then
+    mkdir -p "$(dirname "$STATE_FILE")"
+    head -1 "$HISTORY_FILE" > "$STATE_FILE"
+fi
+
+set_project() {
+    local project="$1"
+
+    # Validate project directory exists
+    if [[ ! -d "$GITHUB_DIR/$project" ]]; then
+        echo "Error: $GITHUB_DIR/$project does not exist"
+        exit 1
+    fi
+
+    # Write to state file
+    echo "$project" > "$STATE_FILE"
+
+    # Update history: move project to top
+    local tmp
+    tmp=$(grep -vx "$project" "$HISTORY_FILE" 2>/dev/null || true)
+    { echo "$project"; echo "$tmp"; } | sed '/^$/d' > "$HISTORY_FILE"
+
+    echo "Screenshot project set to: $project"
+    echo "Screenshots will save to: $GITHUB_DIR/$project/context/screenshots/"
+}
+
+# Direct mode: pshot <project>
+if [[ $# -ge 1 ]]; then
+    set_project "$1"
+    exit 0
+fi
+
+# Interactive mode
+if ! command -v gum &>/dev/null; then
+    echo "Error: gum is required for interactive mode. Install it or use: pshot <project>"
+    exit 1
+fi
+
+current=$(cat "$STATE_FILE" 2>/dev/null || echo "none")
+echo "Current project: $(gum style --foreground="4" --bold "$current")"
+
+# Build choices: history entries + "Add new"
+choice=$({ cat "$HISTORY_FILE"; echo "--- + Add new ---"; } | gum choose --header "Select screenshot project" --header.foreground="6" --cursor.foreground="2" --selected.foreground="2")
+
+if [[ "$choice" == "--- + Add new ---" ]]; then
+    # List Github repos not already in history
+    all_repos=$(ls "$GITHUB_DIR")
+    history_repos=$(cat "$HISTORY_FILE")
+    new_repos=$(comm -23 <(echo "$all_repos" | sort) <(echo "$history_repos" | sort))
+
+    if [[ -z "$new_repos" ]]; then
+        echo "All Github projects are already in your list."
+        exit 0
+    fi
+
+    choice=$(echo "$new_repos" | gum choose --header "Select new project to add" --header.foreground="6" --cursor.foreground="2" --selected.foreground="2")
+fi
+
+set_project "$choice"

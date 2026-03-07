@@ -26,7 +26,14 @@ vim.opt.foldlevel = 99      -- High level means most folds will be open
 
 -- close buffers
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Delete buffer' })
-vim.keymap.set('n', '<leader>q',':q<CR>', { desc = 'Close' })
 
 -- temporarily increase this time while I'm learning
 vim.opt.timeoutlen = 2000
+
+-- Set conceallevel for markdown files (required for obsidian.nvim)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})

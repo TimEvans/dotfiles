@@ -1,0 +1,39 @@
+[[plugin.deps]]
+use = "yazi-rs/flavors:catpuccin-mocha"
+rev = "9e053d0"
+hash = "99aa06d3014798d86001c324468d497f"
+
+[[plugin.deps]]
+use = "yazi-rs/flavors:everforest"
+rev = "9e053d0"
+hash = "99aa06d3014798d86001c324468d497f"
+
+[[plugin.deps]]
+use = "yazi-rs/flavors:everforest-medium"
+rev = "9e053d0"
+hash = "99aa06d3014798d86001c324468d497f"
+
+[[flavor.deps]]
+use = "Chromium-3-Oxide/everforest-medium"
+rev = "0158f0f"
+hash = "a7c36abf0b13289aceb1c20a17c6a63e"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "9e053d0"
+hash = "8589ae0231756a9daf9c072f31b1fe0"
+
+[[flavor.deps]]
+use = "KvizadSaderah/everforest-medium"
+rev = "83fe780"
+hash = "d33fbfce4e5dbc044e289d34fdede65d"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "9e053d0"
+hash = "8eabb4e88096f10905a6df62cfaadbf4"
+
+[[flavor.deps]]
+use = "TimEvans/everforest-medium"
+rev = "03220e1"
+hash = "21bc6d2076fac068d0740baa16e4c932"

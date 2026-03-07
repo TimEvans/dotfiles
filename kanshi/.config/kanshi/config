@@ -6,8 +6,16 @@ profile undocked {
     scale 1.5
     transform normal
   }
+}
 
-  exec hyprctl dispatch dpms on eDP-1
+profile undocked-powersave {
+  output eDP-1 {
+    enable
+    mode 2880x1800@60.00Hz
+    position 0,0
+    scale 1.5
+    transform normal
+  }
 }
 
 profile docked {
@@ -18,7 +26,7 @@ profile docked {
   output "Lenovo Group Limited LEN D27-20B 0x31434635" {
     enable
     mode 1920x1080@74.97Hz
-    position 0,420
+    position 0,86
     scale 1.0
     transform normal
   }
@@ -30,5 +38,7 @@ profile docked {
     scale 1.0
     transform 270
   }
+
+  exec ~/dotfiles/scripts/update-hyprpaper-monitors.sh && killall hyprpaper; hyprpaper
 }
 

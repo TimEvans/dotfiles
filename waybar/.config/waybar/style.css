@@ -16,7 +16,7 @@ window#waybar {
 }*/
 
 #workspaces {
-  background: #D3C6AA;
+  background: #0a4021;
   border-radius: 8px;
   margin: 4px 6px;
   padding: 2px;
@@ -25,7 +25,7 @@ window#waybar {
 #workspaces button {
   padding: 0 8px;
   background: #FFFBEF;
-  color: #000000;
+  color: #0a4021;
   border-radius: 4px;
   margin: 2px;
 }
@@ -43,21 +43,32 @@ window#waybar {
 #clock,
 #battery,
 #network,
+#custom-vpn,
 #pulseaudio,
+#backlight,
 #bluetooth,
+#power-profiles-daemon,
 #custom-notification,
-#custom-exit {
+#custom-exit,
+#custom-hyprwhspr {
   margin: 4px 6px;
-  padding: 2px;
-  padding: 0 12px;
-  background: #FFFBEF;
+  padding: 0 3px;
+  background: transparent;
   border-radius: 8px;
-  color: #0a4021;
-  border: 3px solid #D3C6AA;
+  color: #FFFBEF;
+}
+
+#custom-vpn.disconnected {
+  color: #859289;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+  color: #859289;
 }
 
 #window {
-  color: #272E33;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -76,6 +87,24 @@ window#waybar {
   border-radius: 8px;
   margin: 4px 6px;
   padding: 0 8px;
+}
+
+#custom-hyprwhspr {
+  color: #859289;
+}
+
+#custom-hyprwhspr.recording {
+  color: #FFFBEF;
+}
+
+#custom-hyprwhspr.error {
+  color: #E69875;
+}
+
+tooltip {
+  background: #D3C6AA;
+  border-radius: 8px;
+  color: #FFFBEF;
 }
 
 

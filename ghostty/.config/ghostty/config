@@ -44,3 +44,4 @@
 
 # Theme
 theme = Everforest Dark - Hard
+keybind = shift+enter=text:\x1b\r

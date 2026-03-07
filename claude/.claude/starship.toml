@@ -1,0 +1,80 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+palette = "everforest"
+
+format = """
+[](fg:bg1)\
+${env_var.CLAUDE_MODEL_NAME}\
+[](fg:bg1 bg:yellow)\
+$directory\
+[](fg:yellow bg:aqua)\
+$git_branch\
+$git_status\
+${env_var.CLAUDE_CTX_OK}\
+${env_var.CLAUDE_CTX_WARN}\
+${env_var.CLAUDE_CTX_CRIT}\
+${env_var.CLAUDE_COST}\
+"""
+
+# -- Model segment (dark bg) --
+[env_var.CLAUDE_MODEL_NAME]
+variable = "CLAUDE_MODEL_NAME"
+format = "[ $env_value ](bg:bg1 fg:fg)"
+
+# -- Git branch (aqua bg) --
+[git_branch]
+symbol = ""
+style = "bg:aqua fg:bg_dim"
+format = "[ $symbol $branch ]($style)"
+
+[directory]
+style = "bg:yellow fg:bg_dim"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_status]
+style = "bg:aqua fg:bg_dim"
+format = "[($all_status$ahead_behind )]($style)"
+
+# -- Context: normal (green on dark bg) --
+[env_var.CLAUDE_CTX_OK]
+variable = "CLAUDE_CTX_OK"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:green)[](fg:bg3 bg:blue)"
+
+# -- Context: warning (yellow on dark bg) --
+[env_var.CLAUDE_CTX_WARN]
+variable = "CLAUDE_CTX_WARN"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:yellow)[](fg:bg3 bg:blue)"
+
+# -- Context: critical (red on dark bg) --
+[env_var.CLAUDE_CTX_CRIT]
+variable = "CLAUDE_CTX_CRIT"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:red)[](fg:bg3 bg:blue)"
+
+# -- Cost segment (blue bg) --
+[env_var.CLAUDE_COST]
+variable = "CLAUDE_COST"
+format = "[ $env_value ](bg:blue fg:bg_dim)[](fg:blue)"
+
+# -- Everforest palette --
+[palettes.everforest]
+bg_dim = "#232a2e"
+bg0 = "#2d353b"
+bg1 = "#343f44"
+bg2 = "#3d484d"
+bg3 = "#475258"
+bg4 = "#4f585e"
+bg5 = "#56635f"
+fg = "#d3c6aa"
+red = "#e67e80"
+orange = "#e69875"
+yellow = "#dbbc7f"
+green = "#a7c080"
+aqua = "#83c092"
+blue = "#7fbbb3"
+purple = "#d699b6"
+grey0 = "#7a8478"
+grey1 = "#859289"
+grey2 = "#9da9a0"
