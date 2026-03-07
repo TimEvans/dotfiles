@@ -13,6 +13,12 @@ claude/.claude/statsig/
 claude/.claude/projects/
 claude/.claude/todos
 claude/.claude/history.jsonl
+claude/.claude/mcp-needs-auth-cache.json
+claude/.claude/paste-cache/
+claude/.claude/plans/
+claude/.claude/stats-cache.json
+claude/.claude/tasks/
+claude/.claude/telemetry/
 
 node_modules/
 package.json

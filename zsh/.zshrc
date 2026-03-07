@@ -130,6 +130,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # opencode
 export PATH=/home/tim/.opencode/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
+export PATH="$HOME/dotfiles/scripts:$PATH"
 
 # Magnetic Rose Vault - Quick Note Capture
 export VAULT_PATH="/home/tim/Github/magnetic_rose"
