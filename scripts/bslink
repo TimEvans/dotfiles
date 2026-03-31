@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# bslink — interactively symlink folders from backseat-docs into cwd
+# Usage: bslink
+
+set -euo pipefail
+
+SOURCE_DIR="$HOME/Github/backseat-docs"
+LINK_DIR="$(pwd)/backseat-docs"
+
+if ! command -v gum &>/dev/null; then
+    echo "bslink requires gum: https://github.com/charmbracelet/gum"
+    exit 1
+fi
+
+if [[ ! -d "$SOURCE_DIR" ]]; then
+    echo "Source directory not found: $SOURCE_DIR"
+    exit 1
+fi
