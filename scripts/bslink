@@ -16,3 +16,19 @@ if [[ ! -d "$SOURCE_DIR" ]]; then
     echo "Source directory not found: $SOURCE_DIR"
     exit 1
 fi
+
+mapfile -t all_folders < <(
+    find "$SOURCE_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort
+)
+
+if [[ ${#all_folders[@]} -eq 0 ]]; then
+    echo "No folders found in $SOURCE_DIR"
+    exit 0
+fi
+
+existing=()
+if [[ -d "$LINK_DIR" ]]; then
+    while IFS= read -r -d '' link; do
+        existing+=("$(basename "$link")")
+    done < <(find "$LINK_DIR" -maxdepth 1 -mindepth 1 -type l -print0 2>/dev/null)
+fi
