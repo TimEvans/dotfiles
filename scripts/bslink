@@ -47,7 +47,7 @@ if [[ $gum_exit -ne 0 ]]; then
 fi
 
 mapfile -t new_selection <<< "$new_selection_raw"
-# Remove empty trailing element that mapfile adds for empty input
-if [[ ${#new_selection[@]} -eq 1 && -z "${new_selection[0]}" ]]; then
-    new_selection=()
+# Remove empty trailing element that mapfile adds when output ends with newline
+if [[ ${#new_selection[@]} -gt 0 && -z "${new_selection[-1]}" ]]; then
+    unset 'new_selection[-1]'
 fi
