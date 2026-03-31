@@ -18,7 +18,7 @@ if [[ ! -d "$SOURCE_DIR" ]]; then
 fi
 
 mapfile -t all_folders < <(
-    find "$SOURCE_DIR" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort
+    find "$SOURCE_DIR" -maxdepth 1 -mindepth 1 -type d -not -name '.*' -printf '%f\n' | sort
 )
 
 if [[ ${#all_folders[@]} -eq 0 ]]; then
@@ -35,9 +35,19 @@ fi
 
 selected_str=$(IFS=,; echo "${existing[*]}")
 
+gum_args=(
+    --no-limit
+    --height=$(( ${#all_folders[@]} + 2 ))
+    --header="backseat-docs — SPACE to toggle, ENTER to confirm"
+    --cursor.foreground="#a7c080"
+    --selected.foreground="#a7c080"
+    --item.foreground="#d3c6aa"
+    --header.foreground="#dbbc7f"
+)
+[[ -n "$selected_str" ]] && gum_args+=(--selected="$selected_str")
+
 set +e
-new_selection_raw=$(printf '%s\n' "${all_folders[@]}" | \
-    gum choose --no-limit --selected="$selected_str" --header="Select backseat-docs folders to link:")
+new_selection_raw=$(printf '%s\n' "${all_folders[@]}" | gum choose "${gum_args[@]}")
 gum_exit=$?
 set -e
 
