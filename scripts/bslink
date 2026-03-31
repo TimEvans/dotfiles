@@ -32,3 +32,22 @@ if [[ -d "$LINK_DIR" ]]; then
         existing+=("$(basename "$link")")
     done < <(find "$LINK_DIR" -maxdepth 1 -mindepth 1 -type l -print0 2>/dev/null)
 fi
+
+selected_str=$(IFS=,; echo "${existing[*]}")
+
+set +e
+new_selection_raw=$(printf '%s\n' "${all_folders[@]}" | \
+    gum choose --no-limit --selected="$selected_str" --header="Select backseat-docs folders to link:")
+gum_exit=$?
+set -e
+
+if [[ $gum_exit -ne 0 ]]; then
+    echo "Cancelled."
+    exit 0
+fi
+
+mapfile -t new_selection <<< "$new_selection_raw"
+# Remove empty trailing element that mapfile adds for empty input
+if [[ ${#new_selection[@]} -eq 1 && -z "${new_selection[0]}" ]]; then
+    new_selection=()
+fi
