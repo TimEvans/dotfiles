@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# Reads timekeeper binding + story frontmatter for starship prompt segments.
+# Usage: focus-info.sh label|status|spent|check <status-value>
+set -uo pipefail
+
+# Resolve the binding by session ID, not PWD. After focus cds into a worktree
+# (S135), PWD diverges from the session's start cwd, so a PWD-slug lookup would
+# miss the binding and the card would vanish. Glob every project dir for the
+# session's binding; on multiple matches prefer the most recently modified.
+SID="${CLAUDE_SESSION_ID:-${CLAUDE_CODE_SESSION_ID:-none}}"
+BINDING=$(ls -t "$HOME/.claude/projects"/*/"${SID}.binding.json" 2>/dev/null | head -1)
+
+if [ ! -f "$BINDING" ]; then
+  case "${1:-}" in
+    label)  echo "What are we working on?" ;;
+    check)  exit 1 ;;
+    status) echo "" ;;
+    spent)  echo "" ;;
+    nofocus) exit 0 ;;
+  esac
+  exit 0
+fi
+
+STORY=$(jq -r '.story' "$BINDING" 2>/dev/null)
+[ -z "$STORY" ] && exit 1
+
+STORY_FILE=$(find -L "$PWD/docs/stories" -maxdepth 1 -name "${STORY}-*.md" 2>/dev/null | head -1)
+if [ -z "$STORY_FILE" ]; then
+  STORY_FILE=$(find -L "$PWD/docs/stories" -maxdepth 1 -name "${STORY}.md" 2>/dev/null | head -1)
+fi
+
+TITLE=""
+STATUS=""
+SPENT=""
+if [ -n "$STORY_FILE" ]; then
+  TITLE=$(grep -m1 '^title:' "$STORY_FILE" | sed 's/^title:[[:space:]]*//' | tr -d '\n\r')
+  STATUS=$(grep -m1 '^status:' "$STORY_FILE" | sed 's/^status:[[:space:]]*//' | tr -d '\n\r')
+  SPENT=$(grep -m1 '^spent:' "$STORY_FILE" | sed 's/^spent:[[:space:]]*//' | tr -d '\n\r')
+fi
+
+case "${1:-}" in
+  label)
+    if [ -n "$TITLE" ]; then
+      echo "${STORY} - ${TITLE}"
+    else
+      echo "${STORY}"
+    fi
+    ;;
+  status)
+    if [ -n "$SPENT" ]; then
+      echo "${STATUS} (${SPENT})"
+    else
+      echo "${STATUS}"
+    fi
+    ;;
+  spent)
+    echo "${SPENT}"
+    ;;
+  check)
+    [ "$STATUS" = "${2:-}" ]
+    ;;
+  nofocus)
+    exit 1
+    ;;
+esac
