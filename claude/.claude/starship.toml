@@ -7,15 +7,19 @@ format = """
 [](fg:bg1)\
 ${env_var.CLAUDE_MODEL_NAME}\
 [](fg:bg1 bg:yellow)\
-$directory\
+${custom.repo}\
 [](fg:yellow bg:aqua)\
 $git_branch\
 $git_status\
 ${env_var.CLAUDE_CTX_OK}\
 ${env_var.CLAUDE_CTX_WARN}\
-${env_var.CLAUDE_CTX_CRIT}\
-${env_var.CLAUDE_COST}\
+${env_var.CLAUDE_CTX_CRIT}
+[-](fg:bg_term)
+[](fg:blue)\
+${custom.focus_label}\
+${custom.focus_status}\
 """
+
 
 # -- Model segment (dark bg) --
 [env_var.CLAUDE_MODEL_NAME]
@@ -28,11 +32,14 @@ symbol = ""
 style = "bg:aqua fg:bg_dim"
 format = "[ $symbol $branch ]($style)"
 
-[directory]
+# -- Repo: owner repository name, worktree-aware (shows owner repo, not the
+#    worktree slug, when a worktree is checked out) --
+[custom.repo]
+command = "$HOME/.claude/bin/repo-info.sh"
+when = "true"
+shell = ["bash", "--noprofile", "--norc"]
 style = "bg:yellow fg:bg_dim"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+format = "[ $output ]($style)"
 
 [git_status]
 style = "bg:aqua fg:bg_dim"
@@ -41,26 +48,37 @@ format = "[($all_status$ahead_behind )]($style)"
 # -- Context: normal (green on dark bg) --
 [env_var.CLAUDE_CTX_OK]
 variable = "CLAUDE_CTX_OK"
-format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:green)[](fg:bg3 bg:blue)"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:green)[](fg:bg3)"
 
 # -- Context: warning (yellow on dark bg) --
 [env_var.CLAUDE_CTX_WARN]
 variable = "CLAUDE_CTX_WARN"
-format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:yellow)[](fg:bg3 bg:blue)"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:yellow)[](fg:bg3)"
 
 # -- Context: critical (red on dark bg) --
 [env_var.CLAUDE_CTX_CRIT]
 variable = "CLAUDE_CTX_CRIT"
-format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:red)[](fg:bg3 bg:blue)"
+format = "[](fg:aqua bg:bg3)[ $env_value ](bg:bg3 fg:red)[](fg:bg3)"
 
-# -- Cost segment (blue bg) --
-[env_var.CLAUDE_COST]
-variable = "CLAUDE_COST"
-format = "[ $env_value ](bg:blue fg:bg_dim)[](fg:blue)"
+# -- Story focus (blue bg, replaces cost) --
+[custom.focus_label]
+command = "$HOME/.claude/bin/focus-info.sh label"
+when = "true"
+shell = ["bash", "--noprofile", "--norc"]
+format = "[ $output ](bg:blue fg:bg_dim)[](fg:blue bg:bg1)"
+
+
+# -- Story status (bg1, orange text) --
+[custom.focus_status]
+command = "$HOME/.claude/bin/focus-info.sh status"
+when = "true"
+shell = ["bash", "--noprofile", "--norc"]
+format = "[ $output ](bg:bg1 fg:orange)[](fg:bg1)"
 
 # -- Everforest palette --
 [palettes.everforest]
 bg_dim = "#232a2e"
+bg_term = "#2b3339"  # ghostty everforest-hard terminal bg (invisible spacer)
 bg0 = "#2d353b"
 bg1 = "#343f44"
 bg2 = "#3d484d"

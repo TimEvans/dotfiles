@@ -3,6 +3,10 @@
 # Usage: focus-info.sh label|status|spent|check <status-value>
 set -uo pipefail
 
+# Strip one surrounding pair of YAML quotes, e.g. spent: '1:01' -> 1:01.
+# (YAML quotes values like 1:01 because they would otherwise parse as base-60.)
+_unquote() { sed -e "s/^'\(.*\)'$/\1/" -e 's/^"\(.*\)"$/\1/'; }
+
 # Resolve the binding by session ID, not PWD. After focus cds into a worktree
 # (S135), PWD diverges from the session's start cwd, so a PWD-slug lookup would
 # miss the binding and the card would vanish. Glob every project dir for the
@@ -45,9 +49,9 @@ TITLE=""
 STATUS=""
 SPENT=""
 if [ -n "$STORY_FILE" ]; then
-  TITLE=$(grep -m1 '^title:' "$STORY_FILE" | sed 's/^title:[[:space:]]*//' | tr -d '\n\r')
-  STATUS=$(grep -m1 '^status:' "$STORY_FILE" | sed 's/^status:[[:space:]]*//' | tr -d '\n\r')
-  SPENT=$(grep -m1 '^spent:' "$STORY_FILE" | sed 's/^spent:[[:space:]]*//' | tr -d '\n\r')
+  TITLE=$(grep -m1 '^title:' "$STORY_FILE" | sed 's/^title:[[:space:]]*//' | tr -d '\n\r' | _unquote)
+  STATUS=$(grep -m1 '^status:' "$STORY_FILE" | sed 's/^status:[[:space:]]*//' | tr -d '\n\r' | _unquote)
+  SPENT=$(grep -m1 '^spent:' "$STORY_FILE" | sed 's/^spent:[[:space:]]*//' | tr -d '\n\r' | _unquote)
 fi
 
 case "${1:-}" in
