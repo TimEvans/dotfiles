@@ -29,6 +29,18 @@ if [ -z "$STORY_FILE" ]; then
   STORY_FILE=$(find -L "$PWD/docs/stories" -maxdepth 1 -name "${STORY}.md" 2>/dev/null | head -1)
 fi
 
+# Worktree fallback (S156): the cwd-relative docs/stories may not exist inside
+# a focus-created worktree. Resolve via the vault root recorded in the binding.
+if [ -z "$STORY_FILE" ]; then
+  VAULT=$(jq -r '.vault // empty' "$BINDING" 2>/dev/null)
+  if [ -n "$VAULT" ]; then
+    STORY_FILE=$(find -L "$VAULT/stories" -maxdepth 1 -name "${STORY}-*.md" 2>/dev/null | head -1)
+    if [ -z "$STORY_FILE" ]; then
+      STORY_FILE=$(find -L "$VAULT/stories" -maxdepth 1 -name "${STORY}.md" 2>/dev/null | head -1)
+    fi
+  fi
+fi
+
 TITLE=""
 STATUS=""
 SPENT=""
