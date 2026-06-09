@@ -45,6 +45,23 @@ if [ -z "$STORY_FILE" ]; then
   fi
 fi
 
+# Owner-repo fallback (S156 follow-up): bindings written before the vault field
+# existed, and worktrees created before symlink mirroring, satisfy neither path
+# above. The OWNER repo (parent of git's --git-common-dir) always has docs/stories
+# on disk, and is derivable from any worktree with no fresh focus required.
+if [ -z "$STORY_FILE" ]; then
+  COMMON=$(git rev-parse --git-common-dir 2>/dev/null || true)
+  if [ -n "$COMMON" ]; then
+    OWNER=$(cd "$(dirname "$COMMON")" 2>/dev/null && pwd)
+    if [ -n "$OWNER" ]; then
+      STORY_FILE=$(find -L "$OWNER/docs/stories" -maxdepth 1 -name "${STORY}-*.md" 2>/dev/null | head -1)
+      if [ -z "$STORY_FILE" ]; then
+        STORY_FILE=$(find -L "$OWNER/docs/stories" -maxdepth 1 -name "${STORY}.md" 2>/dev/null | head -1)
+      fi
+    fi
+  fi
+fi
+
 TITLE=""
 STATUS=""
 SPENT=""
