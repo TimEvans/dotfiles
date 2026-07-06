@@ -27,3 +27,7 @@ watch_*
 *.bak
 *.bak.*
 opencode/.config/opencode/snapshots/
+
+herdr/.config/herdr/*.log
+herdr/.config/herdr/*.sock
+herdr/.config/herdr/session.json

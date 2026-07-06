@@ -1,0 +1,31 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+space"
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[theme.custom]
+accent = "#a7c080"
+panel_bg = "#2b3339"
+surface0 = "#2e383c"
+surface1 = "#374145"
+surface_dim = "#1e2326"
+overlay0 = "#7a8478"
+overlay1 = "#859289"
+text = "#d3c6aa"
+subtext0 = "#9da9a0"
+mauve = "#d699b6"
+green = "#a7c080"
+yellow = "#dbbc7f"
+red = "#e67e80"
+blue = "#7fbbb3"
+teal = "#83c092"
+peach = "#e69875"
+
+[ui]
+agent_panel_sort = "spaces"
