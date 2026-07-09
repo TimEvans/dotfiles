@@ -7,6 +7,10 @@ navigate_workspace_down = "j"
 previous_tab = "prefix+h"
 next_tab = "prefix+l"
 rename_tab = "prefix+t"
+switch_tab = ""
+previous_agent = "prefix+,"
+next_agent = "prefix+."
+focus_agent = "prefix+1..9"
 
 [[keys.command]]
 key = "prefix+shift+g"
