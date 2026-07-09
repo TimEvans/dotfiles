@@ -1,10 +1,31 @@
 {
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.local/bin/starship-claude"
   },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
-    "claude-session-driver@superpowers-marketplace": true
-  }
+    "claude-session-driver@superpowers-marketplace": true,
+    "figma@claude-plugins-official": true,
+    "scrum-master@cc-plugins": true,
+    "timekeeper@cc-plugins": true,
+    "supabase@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "posthog@claude-plugins-official": true,
+    "workflow@cc-plugins": true,
+    "backseat-design@cc-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "cc-plugins": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:TimEvans/cc-plugins.git"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true
 }
