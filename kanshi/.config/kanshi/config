@@ -2,35 +2,41 @@ profile undocked {
   output eDP-1 {
     enable
     mode 2880x1800@120.00Hz
-    position 0,0
+    position 1920,1920
     scale 1.5
     transform normal
   }
+
+  exec ~/dotfiles/scripts/refresh-outputs.sh
 }
 
 profile undocked-powersave {
   output eDP-1 {
     enable
     mode 2880x1800@60.00Hz
-    position 0,0
+    position 1920,1920
     scale 1.5
     transform normal
   }
+
+  exec ~/dotfiles/scripts/refresh-outputs.sh
 }
 
 profile docked {
-  output eDP-1 {
-    disable
-  }
+  # Two Lenovos exactly as before: landscape LHS, portrait RHS.
+  # Laptop panel stays ON while docked, positioned directly BELOW the portrait
+  # (RHS) Lenovo -- so undocking needs no off->on transition for eDP-1.
 
+  # Landscape Lenovo -- left-hand side
   output "Lenovo Group Limited LEN D27-20B 0x31434635" {
     enable
     mode 1920x1080@74.97Hz
-    position 0,86
+    position 0,20
     scale 1.0
     transform normal
   }
 
+  # Portrait Lenovo -- right-hand side (unchanged), occupies x[1920,3000] y[0,1920]
   output "Lenovo Group Limited LEN D27-20B U733018L" {
     enable
     mode 1920x1080@60.00Hz
@@ -39,6 +45,14 @@ profile docked {
     transform 270
   }
 
+  # Laptop -- below the portrait Lenovo (its bottom edge is y=1920)
+  output eDP-1 {
+    enable
+    mode 2880x1800@120.00Hz
+    position 1920,1920
+    scale 1.5
+    transform normal
+  }
+
   exec ~/dotfiles/scripts/update-hyprpaper-monitors.sh && killall hyprpaper; hyprpaper
 }
-
