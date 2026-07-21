@@ -11,8 +11,24 @@ get_current_profile() {
     cat /sys/firmware/acpi/platform_profile 2>/dev/null
 }
 
+# Docked if any active output other than eDP-1 is present (the external monitors).
+# While docked, kanshi's `docked` profile owns the display layout -- and it sets the
+# balanced power profile, which flips platform_profile and wakes this watcher. Forcing
+# an `undocked` switch here would disable the externals, so the script stands down.
+is_docked() {
+    local external
+    external=$(hyprctl monitors -j 2>/dev/null | jq -r '[.[] | select(.name != "eDP-1")] | length')
+    [ "${external:-0}" -gt 0 ]
+}
+
 apply_profile() {
     local profile=$1
+
+    if is_docked; then
+        echo "Docked -- leaving display layout to kanshi's docked profile"
+        return
+    fi
+
     case "$profile" in
         "low-power")
             echo "Switching to 60Hz (power-saver mode)"

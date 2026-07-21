@@ -47,18 +47,28 @@ profile docked {
     transform 270
   }
 
-  # Laptop -- below the portrait Lenovo. Rotated to portrait ("page" orientation)
-  # for stylus work while docked. Rotated it is 1200x1920 logical, so it spans
-  # x[1920,3120] y[1920,3840] -- still clear of the portrait Lenovo above it.
+  # Laptop -- below the portrait Lenovo. Rotated 90 degrees anticlockwise into
+  # portrait ("page" orientation) for stylus work while docked. Rotated it is
+  # 1200x1920 logical, so it spans x[1920,3120] y[1920,3840] -- still clear of
+  # the portrait Lenovo above it.
+  #
+  # kanshi counts rotation ANTICLOCKWISE (the Wayland convention), so 90 here is
+  # 90 anticlockwise -- not the clockwise reading sway's docs suggest.
   output eDP-1 {
     enable
     mode 2880x1800@120.00Hz
     position 1920,1920
     scale 1.5
-    transform 270
+    transform 90
   }
 
   exec ~/dotfiles/scripts/update-hyprpaper-monitors.sh && killall hyprpaper; hyprpaper
   exec ~/dotfiles/scripts/sync-tablet-transform.sh
+
+  # Docking should charge at full rate. Eco/power-saver throttles the charger and can
+  # net-discharge under load, which drives the fuel-gauge desync -- so force balanced
+  # while docked. The refresh-rate watcher ignores the resulting profile change (see
+  # is_docked in power-profile-refresh-rate.sh) so this does not disturb the layout.
+  exec powerprofilesctl set balanced
 }
 
