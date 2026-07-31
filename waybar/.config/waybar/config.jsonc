@@ -12,7 +12,7 @@
   "modules-right": [
     "pulseaudio",
     "backlight",
-    "bluetooth",
+    "custom/bluetooth",
     "network",
     "custom/vpn",
     "power-profiles-daemon",
@@ -251,13 +251,11 @@
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip-format": "Brightness: {percent}%"
   },
-  "bluetooth": {
-    "format": "\uf293 {status}",
-    "format-disabled": "\uf293 {status}",
-    "format-off": "\uf293 {status}",
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/bluetooth-status.sh",
+    "return-type": "json",
     "interval": 30,
-    "on-click": "blueman-manager",
-    "format-no-controller": ""
+    "on-click": "blueman-manager"
   },
   "include": [
     "/home/tim/.config/waybar/hyprwhspr-module.jsonc"

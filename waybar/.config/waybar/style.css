@@ -46,7 +46,7 @@ window#waybar {
 #custom-vpn,
 #pulseaudio,
 #backlight,
-#bluetooth,
+#custom-bluetooth,
 #power-profiles-daemon,
 #custom-notification,
 #custom-exit,
@@ -62,8 +62,8 @@ window#waybar {
   color: #859289;
 }
 
-#bluetooth.off,
-#bluetooth.disabled {
+#custom-bluetooth.off,
+#custom-bluetooth.no-controller {
   color: #859289;
 }
 
