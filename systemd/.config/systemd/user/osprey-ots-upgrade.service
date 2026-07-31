@@ -1,0 +1,9 @@
+[Unit]
+Description=Upgrade Osprey evidence OpenTimestamps proofs
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/tim/Github/osprey-evidence
+ExecStart=/home/tim/Github/osprey-evidence/scripts/upgrade-timestamps.sh

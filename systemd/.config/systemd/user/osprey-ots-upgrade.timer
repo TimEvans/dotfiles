@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily upgrade of Osprey evidence OpenTimestamps proofs
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=1h
+
+[Install]
+WantedBy=timers.target
