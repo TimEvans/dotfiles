@@ -19,6 +19,15 @@ claude/.claude/plans/
 claude/.claude/stats-cache.json
 claude/.claude/tasks/
 claude/.claude/telemetry/
+claude/.claude/.last-cleanup
+claude/.claude/.last-update-result.json
+claude/.claude/daemon-auth-cooldown
+claude/.claude/daemon-auth-status.json
+claude/.claude/daemon.log
+claude/.claude/daemon/
+claude/.claude/jobs/
+claude/.claude/sessions/
+claude/.claude/uploads/
 
 node_modules/
 package.json
@@ -31,3 +40,6 @@ opencode/.config/opencode/snapshots/
 herdr/.config/herdr/*.log
 herdr/.config/herdr/*.sock
 herdr/.config/herdr/session.json
+herdr/.config/herdr/release-notes.json
+
+.timekeeper/
