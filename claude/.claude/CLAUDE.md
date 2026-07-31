@@ -12,7 +12,7 @@
 
 ## Git & Commits
 
-- **Never commit changes without explicit user permission** - Always ask before creating commits
+- **Commit completed work directly** - Use judgement; no need to ask before each commit on work that's clearly complete and approved. Still ask before committing ambiguous, partial, or unrelated changes.
 - **Never commit `.env` files or other secrets** (`.env*`, `credentials.json`, private keys, etc.)
 - **Always use conventional commits format**: `type(scope): description`
   - Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `style`, `perf`
