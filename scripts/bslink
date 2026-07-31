@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# bslink — interactively symlink folders from backseat-docs into cwd
-# Usage: bslink
+# bslink — interactively symlink folders from backseat-docs into cwd/docs/
+# Usage: bslink (run from the target repo root)
 
 set -euo pipefail
 
 SOURCE_DIR="$HOME/Github/backseat-docs"
-LINK_DIR="$(pwd)/backseat-docs"
+LINK_DIR="$(pwd)/docs"
 
 if ! command -v gum &>/dev/null; then
     echo "bslink requires gum: https://github.com/charmbracelet/gum"
@@ -74,7 +74,7 @@ array_contains() {
 for folder in "${existing[@]}"; do
     if ! array_contains "$folder" "${new_selection[@]+"${new_selection[@]}"}"; then
         rm "$LINK_DIR/$folder"
-        echo "Removed: backseat-docs/$folder"
+        echo "Removed: docs/$folder"
     fi
 done
 
@@ -88,7 +88,7 @@ if [[ ${#new_selection[@]} -gt 0 ]]; then
         fi
         if ! array_contains "$folder" "${existing[@]+"${existing[@]}"}"; then
             ln -s "$SOURCE_DIR/$folder" "$target"
-            echo "Linked: backseat-docs/$folder"
+            echo "Linked: docs/$folder"
         fi
     done
 fi
