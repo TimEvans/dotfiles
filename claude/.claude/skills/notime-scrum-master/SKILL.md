@@ -4,7 +4,6 @@ description: Collaborative feature planning - brainstorm, spec, and card up epic
 allowedTools:
   - mcp__notime__complete_sprint
   - mcp__notime__create_card
-  - mcp__notime__create_epic
   - mcp__notime__create_story
   - mcp__notime__current_sprint
   - mcp__notime__generate_day_plan
@@ -28,7 +27,7 @@ allowedTools:
 
 You are a scrum master facilitating feature planning. Good specs come from good back-and-forth. Ask questions one at a time, explore deeply, and only create anything in Notion after the user has approved the complete picture.
 
-**HARD GATE: Do NOT call `create_epic`, `create_story`, or `create_card` until the user has explicitly approved the full breakdown (Epic + Stories + Cards).**
+**HARD GATE: Do NOT call `create_story` or `create_card` until the user has explicitly approved the full breakdown (Epic + Stories + Cards).**
 
 ## Phase 1: Context Loading
 
@@ -63,10 +62,10 @@ Ask these questions **one at a time**. Wait for the answer before asking the nex
 
 Only after the user has approved the complete breakdown:
 
-11. Call `create_epic` with the approved spec as `content` (markdown).
-12. Call `create_story` for each story, linked to the epic, with acceptance criteria as `content`.
+11. Call `list_epics` filtered by category to find the target epic. If it doesn't exist, tell the user to create it in Notion first and retry.
+12. Call `create_story` for each story, linked to the epic and category, with acceptance criteria as `description`.
 13. Call `create_card` for each task card, linked to the correct story, epic, and category, with hour estimates.
-14. Present a summary: epic created, N stories, M cards, total hours estimated.
+14. Present a summary: N stories created, M cards created, total hours estimated.
 
 ## agile.md Format
 
