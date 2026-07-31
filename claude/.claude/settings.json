@@ -1,5 +1,5 @@
 {
-  "model": "opus",
+  "model": "fable",
   "statusLine": {
     "type": "command",
     "command": "~/.local/bin/starship-claude"
@@ -14,7 +14,8 @@
     "frontend-design@claude-plugins-official": true,
     "posthog@claude-plugins-official": true,
     "workflow@cc-plugins": true,
-    "backseat-design@cc-plugins": true
+    "backseat-design@cc-plugins": true,
+    "papercuts@cc-plugins": true
   },
   "extraKnownMarketplaces": {
     "cc-plugins": {
@@ -24,8 +25,14 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
+  "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  }
 }
