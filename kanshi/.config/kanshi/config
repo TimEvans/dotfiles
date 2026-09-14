@@ -64,6 +64,7 @@ profile docked {
 
   exec ~/dotfiles/scripts/update-hyprpaper-monitors.sh && killall hyprpaper; hyprpaper
   exec ~/dotfiles/scripts/sync-tablet-transform.sh
+  exec ~/dotfiles/scripts/set-x-primary.sh
 
   # Docking should charge at full rate. Eco/power-saver throttles the charger and can
   # net-discharge under load, which drives the fuel-gauge desync -- so force balanced
