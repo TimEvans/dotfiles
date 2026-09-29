@@ -25,31 +25,31 @@ profile undocked-powersave {
 }
 
 profile docked {
-  # Two Lenovos exactly as before: landscape LHS, portrait RHS.
+  # Two Lenovos: portrait LHS, landscape RHS.
   # Laptop panel stays ON while docked, positioned directly BELOW the portrait
-  # (RHS) Lenovo -- so undocking needs no off->on transition for eDP-1.
+  # (LHS) Lenovo -- so undocking needs no off->on transition for eDP-1.
 
-  # Landscape Lenovo -- left-hand side
-  output "Lenovo Group Limited LEN D27-20B 0x31434635" {
-    enable
-    mode 1920x1080@74.97Hz
-    position 0,20
-    scale 1.0
-    transform normal
-  }
-
-  # Portrait Lenovo -- right-hand side (unchanged), occupies x[1920,3000] y[0,1920]
+  # Portrait Lenovo -- left-hand side, occupies x[0,1080] y[0,1920]
   output "Lenovo Group Limited LEN D27-20B U733018L" {
     enable
     mode 1920x1080@60.00Hz
-    position 1920,0
+    position 0,0
     scale 1.0
     transform 270
   }
 
+  # Landscape Lenovo -- right-hand side, occupies x[1080,3000] y[20,1100]
+  output "Lenovo Group Limited LEN D27-20B 0x31434635" {
+    enable
+    mode 1920x1080@74.97Hz
+    position 1080,20
+    scale 1.0
+    transform normal
+  }
+
   # Laptop -- below the portrait Lenovo. Rotated 90 degrees anticlockwise into
   # portrait ("page" orientation) for stylus work while docked. Rotated it is
-  # 1200x1920 logical, so it spans x[1920,3120] y[1920,3840] -- still clear of
+  # 1200x1920 logical, so it spans x[0,1200] y[1920,3840] -- still clear of
   # the portrait Lenovo above it.
   #
   # kanshi counts rotation ANTICLOCKWISE (the Wayland convention), so 90 here is
@@ -57,7 +57,7 @@ profile docked {
   output eDP-1 {
     enable
     mode 2880x1800@120.00Hz
-    position 1920,1920
+    position 0,1920
     scale 1.5
     transform 90
   }
