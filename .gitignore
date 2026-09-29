@@ -28,6 +28,8 @@ claude/.claude/daemon/
 claude/.claude/jobs/
 claude/.claude/sessions/
 claude/.claude/uploads/
+claude/.claude/skills/synced/
+claude/.claude/state/
 
 node_modules/
 package.json
@@ -41,5 +43,6 @@ herdr/.config/herdr/*.log
 herdr/.config/herdr/*.sock
 herdr/.config/herdr/session.json
 herdr/.config/herdr/release-notes.json
+herdr/.config/herdr/sessions/
 
 .timekeeper/
