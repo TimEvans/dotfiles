@@ -38,6 +38,7 @@
     "mode": "hold"
   },
   "autoMemoryEnabled": false,
+  "idleCompaction": false,
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
