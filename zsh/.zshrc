@@ -121,19 +121,20 @@ alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias zen='flatpak run app.zen_browser.zen'
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+# fzf --zsh needs fzf 0.48+; older distro packages ship the scripts under /usr/share/doc instead
+if fzf --zsh >/dev/null 2>&1; then
+  source <(fzf --zsh)
+elif [ -d /usr/share/doc/fzf/examples ]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 eval "$(zoxide init zsh)"
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.local/bin:$PATH"
-# opencode
-export PATH=/home/tim/.opencode/bin:$PATH
-export PATH=~/.npm-global/bin:$PATH
-export PATH="$HOME/dotfiles/scripts:$PATH"
+# PATH is set in ~/.zshenv so non-interactive shells (ssh commands, cron, hooks) get it too.
 
 # Magnetic Rose Vault - Quick Note Capture
-export VAULT_PATH="/home/tim/Github/magnetic_rose"
+export VAULT_PATH="$HOME/magnetic_rose"
 
 # Magnetic Rose Vault - Quick Note Capture
 export MET_VAULT_PATH="/home/tim/Github/met-docs"
@@ -164,8 +165,4 @@ metnote() {
 }
 
 # bun completions
-[ -s "/home/tim/.bun/_bun" ] && source "/home/tim/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
