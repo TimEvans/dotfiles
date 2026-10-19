@@ -131,7 +131,7 @@ format = '[ $user ]($style)'
 [hostname]
 ssh_only = true
 style = "bg:bg1 fg:fg"
-format = '[@$hostname [󰖟](fg:aqua bg:bg1)]($style)'
+format = '[@$hostname [󰖟](fg:orange bg:bg1)]($style)'
 
 [directory]
 style = "fg:bg_dim bg:aqua"
