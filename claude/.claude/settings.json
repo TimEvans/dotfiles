@@ -42,5 +42,7 @@
   "skipDangerousModePermissionPrompt": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "tui": "fullscreen",
+  "theme": "dark"
 }
