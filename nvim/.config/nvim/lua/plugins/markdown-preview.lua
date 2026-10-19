@@ -3,6 +3,8 @@ return {
   cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { "markdown" },
   build = function()
+    -- The build runs before ft/cmd lazy-loading has sourced the plugin's autoload functions
+    require("lazy").load({ plugins = { "markdown-preview.nvim" } })
     vim.fn["mkdp#util#install"]()
   end,
   config = function()
