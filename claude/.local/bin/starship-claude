@@ -292,10 +292,36 @@ if command -v jq >/dev/null 2>&1 && [ -n "$payload" ]; then
       export CLAUDE_PERCENT_RAW="$percent_used"
       export CLAUDE_CONTEXT="$(printf '%3s' "${percent_used}%")"
     else
+      percent_used=0
+      export CLAUDE_PERCENT_RAW="0"
       export CLAUDE_CONTEXT="  %"
     fi
   else
+    percent_used=0
+    export CLAUDE_PERCENT_RAW="0"
     export CLAUDE_CONTEXT="  %"
+  fi
+
+  # Build visual progress bar (10 segments)
+  bar_filled=$((${percent_used:-0} / 10))
+  bar_empty=$((10 - bar_filled))
+  bar_str=""
+  for ((i=0; i<bar_filled; i++)); do bar_str+="█"; done
+  for ((i=0; i<bar_empty; i++)); do bar_str+="░"; done
+  export CLAUDE_BAR="$bar_str"
+
+  # Export conditional context vars for color-coded starship segments
+  # Only one is set at a time; unset the others so starship skips them
+  unset CLAUDE_CTX_OK CLAUDE_CTX_WARN CLAUDE_CTX_CRIT
+  tokens="${current_tokens:-0}"
+  tokens_display="$(((tokens + 500) / 1000))k"
+  ctx_display="(${tokens_display}) $bar_str ${percent_used}%"
+  if [ "${percent_used:-0}" -ge 60 ]; then
+    export CLAUDE_CTX_CRIT="$ctx_display"
+  elif [ "${percent_used:-0}" -ge 40 ]; then
+    export CLAUDE_CTX_WARN="$ctx_display"
+  else
+    export CLAUDE_CTX_OK="$ctx_display"
   fi
 fi
 
