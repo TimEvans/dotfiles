@@ -1,0 +1,6 @@
+{
+  "spec": "0.2",
+  "role": "member",
+  "owner_vault": "magnetic-rose",
+  "vault_remote": "git@github.com:TimEvans/magnetic_rose.git"
+}
