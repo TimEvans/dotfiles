@@ -8,6 +8,8 @@ export BUN_INSTALL="$HOME/.bun"
 typeset -U path
 path=(
   "$HOME/magnetic_rose/repos/dotfiles/scripts"
+  "$HOME/Github/magnetic_rose/repos/dotfiles/scripts"
+  "$HOME/dotfiles/scripts"
   "$HOME/.npm-global/bin"
   "$HOME/.opencode/bin"
   "$BUN_INSTALL/bin"

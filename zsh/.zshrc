@@ -134,7 +134,12 @@ eval "$(zoxide init zsh)"
 # PATH is set in ~/.zshenv so non-interactive shells (ssh commands, cron, hooks) get it too.
 
 # Magnetic Rose Vault - Quick Note Capture
-export VAULT_PATH="$HOME/magnetic_rose"
+# The vault lives at ~/magnetic_rose on dataserv and ~/Github/magnetic_rose here.
+if [ -d "$HOME/magnetic_rose" ]; then
+  export VAULT_PATH="$HOME/magnetic_rose"
+else
+  export VAULT_PATH="$HOME/Github/magnetic_rose"
+fi
 
 # Magnetic Rose Vault - Quick Note Capture
 export MET_VAULT_PATH="/home/tim/Github/met-docs"
